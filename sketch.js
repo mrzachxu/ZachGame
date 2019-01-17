@@ -7,7 +7,7 @@ let rectarray = [];
 let caught = false;
 let currentRectangle;
 let died = false;
-let scoretime = 0
+let scoretime = 0;
 
 function setup() {
   frameRate(50);
@@ -23,8 +23,8 @@ function draw() {
   background(0,0,0);
 
   if (frameCount % 30 == 0 && died == false) {
-      let  r = new Rectangles(random(0,width), height-30, 500, -4);
-      scoretime = scoretime+1
+      let  r = new Rectangles(random(0,width), height-30, 500);
+      scoretime = scoretime + 1
       rectarray.push(r);
 
     }
@@ -51,10 +51,9 @@ function displayscore(){
 
 class Rectangles{
 
-  constructor(x,y, width, speed){
+  constructor(x,y, width){
         this.x = x;
         this.y = y;
-        this.speed = speed;
         this.width = width;
       }
 
@@ -69,7 +68,7 @@ class Rectangles{
 
   moveRect(){
     this.x;
-    this.y = this.y-3.5;
+    this.y = this.y - 3.5;
   }
 }
 
@@ -92,15 +91,15 @@ class Ball{
      for (let i = 0; i < 10; i++) {
 
         if (keyIsDown(65)){
-          this.x -= 1;
+          this.x -= 1 + scoretime/75;
         }
 
         if (keyIsDown(68)){
-          this.x += 1;
+          this.x += 1 + scoretime/75;
         }
 
         if (caught == false){
-          this.y= this.y+.5;
+          this.y= this.y + 0.5;
         }
 
         if (this.x <= 5){
@@ -175,3 +174,4 @@ class Border{
     rect(0,0,10,3000)
     rect(1500,0,10,2000)}
 }
+
